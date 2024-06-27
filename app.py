@@ -1,19 +1,15 @@
-from flask import Flask, jsonify
-import random
-
+from flask import Flask, render_template
 app = Flask(__name__)
 
-facts = [
-    "Mars has the tallest volcano in the solar system, Olympus Mons.",
-    "Venus is the hottest planet in our solar system.",
-    "Jupiter has the shortest day of all the planets."
-]
+@app.route('/planet-fact')
+def star_facts():
+    facts = [
+        {"name": "Sun", "fact": "The Sun is the star at the center of the Solar System."},
+        {"name": "Sirius", "fact": "Sirius is the brightest star in the night sky."},
+        {"name": "Betelgeuse", "fact": "Betelgeuse is a red supergiant star in the constellation Orion."},
+        {"name": "Polaris", "fact": "Polaris is known as the North Star."},
+    ]
+    return render_template('index.html', title="Star Facts", facts=facts)
 
-@app.route('/planet-fact', methods=['GET'])
-def get_planet_fact():
-    fact = random.choice(facts)
-    return jsonify({"fact": fact})
-
-if __name__ == '__main__':
-    # app.run(debug=True)
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
