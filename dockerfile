@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 
 # Define environment variable
-ENV NAME PlanetFactsService
+ENV NAME=PlanetFactsService
 
 # Run app.py when the container launches
-CMD ["python", "planet_facts_service.py"]
+CMD ["python", "app.py"]
